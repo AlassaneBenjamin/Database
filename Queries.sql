@@ -8,7 +8,7 @@ on r.rezept_id = re.rezept_id
 where re.rezeptname = 'Kartoffelauflauf';
 
 
---Auswahl von Rezepten entsprechend vorgegebener Ernährungskategorien--
+--Auswahl von Rezepten entsprechend vorgegebener ErnÃ¤hrungskategorien--
 select r.rezeptname, e.kategorie_name
 from rezepte r 
 left join ernaehrungskategorien e 
@@ -16,7 +16,7 @@ on r.rezept_id = e.rezept_id
 where e.kategorie_name like '%vegan%';
 
 
---Auswahl bzw. Ausschluss von Rezepten auf Basis von Beschränkungen-
+--Auswahl bzw. Ausschluss von Rezepten auf Basis von BeschrÃ¤nkungen-
 select r.rezeptname 
 from rezepte r 
 left join beschraenkungen b 
@@ -40,7 +40,7 @@ left join rezeptzutat r
 on z.zutatennr = r.zutatennr 
 where r.rezept_id = $1 ;
 
---Auswahl aller Rezepte einer bestimmten Ernährungskategorie--
+--Auswahl aller Rezepte einer bestimmten ErnÃ¤hrungskategorie--
 select *
 from ernaehrungskategorien ;
 
@@ -81,7 +81,7 @@ from rezepte r
 where r.zutaten like '%Tomaten%';
 
 
---Berechnung der durchschnittlichen Nährwerte aller Bestellungen eines Kunden--
+--Berechnung der durchschnittlichen NÃ¤hrwerte aller Bestellungen eines Kunden--
 SELECT AVG(kalorien) AS Kalorien,
 AVG(protein) AS Proteine,
 AVG(kohlenhydrate) AS Kohlenhydrate
@@ -98,13 +98,13 @@ on z.zutatennr = r.zutatennr
 where rezept_id = 0;
 
 
---Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht überschreiten-- 
+--Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht Ã¼berschreiten-- 
 select*
 from rezepte r 
 where r.kalorien < 500 ;
 
 
---Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten--
+--Auswahl aller Rezepte, die weniger als fÃ¼nf Zutaten enthalten--
 ect r.rezeptname, r.zutaten_anzahl, e.kategorie_name 
 from rezepte r 
 left join ernaehrungskategorien e 
@@ -112,7 +112,7 @@ on r.rezept_id = e.rezept_id
 where r.zutaten_anzahl < 5;
 
 
---Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten und eine bestimmte Ernährungskategorie erfüllen--
+--Auswahl aller Rezepte, die weniger als fÃ¼nf Zutaten enthalten und eine bestimmte ErnÃ¤hrungskategorie erfÃ¼llen--
 select r.rezeptname, r.zutaten_anzahl, e.kategorie_name 
 from rezepte r 
 left join ernaehrungskategorien e 
@@ -120,9 +120,9 @@ on r.rezept_id = e.rezept_id
 where r.zutaten_anzahl < 5 and e.kategorie_name = 'vegan';
 
 
--- Zusätzliche Abfragen:--
+-- ZusÃ¤tzliche Abfragen:--
 
--- Auswahl aller Bestellungen deren Rechnungsbetrag über 15 ist--
+-- Auswahl aller Bestellungen deren Rechnungsbetrag Ã¼ber 15 ist--
 select* 
 from bestellung b 
 where b.rechnungsbetrag > 15;
@@ -143,7 +143,7 @@ select count(r.rezeptname)
 from rezepte r;
 
 
---Angabe der Zutaten, Mengen und Gesamt Nährwerte für die Rezepten-- 
+--Angabe der Zutaten, Mengen und Gesamt NÃ¤hrwerte fÃ¼r die Rezepten-- 
 select r.rezeptname,r.sum_kalorien , r.sum_kohlenhydrate , r.sum_protein,  r2.menge , z.*
 from rezepte r 
 left join rezeptzutat r2 
